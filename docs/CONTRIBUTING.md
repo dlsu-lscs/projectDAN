@@ -140,6 +140,11 @@ class AnotherComponent extends Component {
 
 export default AnotherComponent;
 ```
+
+### States
+To be able to use variables inside our html template, we need to 
+**States** are basically our immutable properties,
+
 (more docs to come soon)
 and thats how we use components with other components, just use it with your pages/smart components
 
