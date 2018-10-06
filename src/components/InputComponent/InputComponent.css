@@ -1,0 +1,14 @@
+.InputComponent{
+    width: 100%;
+    height: 35px;
+    padding: 0px;
+    margin-top: 35px;
+}
+.InputField{
+    width: 100%;
+    height: 25px;
+    padding: 3px;
+}
+.input_error{
+    color: red;
+}
