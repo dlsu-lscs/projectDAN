@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PageLogin from './pages/page-login/page-login';
+import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
 import PageSignup from './pages/page-signup/page-signup';
 import PageNotfound from './pages/page-notfound/page-notfound';
 import { AuthenticateUser } from './actions/authentication';
@@ -38,6 +39,7 @@ class Routes extends Component {
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+                        <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
                         <Route component = {PageNotfound}></Route>
                     </Switch>
                 </div>
