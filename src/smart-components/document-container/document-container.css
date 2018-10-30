@@ -123,6 +123,8 @@
     border-color: #6aa84fff;
     background-color: #6aa84fff;
     border-radius: 50px;
+    height: 9px;
+    margin-top: 20px;
 }
 .stage-1{
     width: 0%;
