@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PageLogin from './pages/page-login/page-login';
 import PageSignup from './pages/page-signup/page-signup';
 import PageNotfound from './pages/page-notfound/page-notfound';
+import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
 
 class Routes extends Component {
@@ -38,6 +39,7 @@ class Routes extends Component {
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+                        <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
                         <Route component = {PageNotfound}></Route>
                     </Switch>
                 </div>
