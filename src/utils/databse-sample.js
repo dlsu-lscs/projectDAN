@@ -18,16 +18,44 @@ export const documents = {
         TypeOfActivity: "Tie-Up Activity (Internal/External)",
         ActivityTime: "0900-1700",
         ActivityVenu: "Gokongwei Lobby; facebook.com/dlsuccstm2018; tinyurl.com/LSCS1819-Letters-For-Your-Professors; facebook.com (#PROFessYourLove)",
-        SubmittedBy: "Sean Paragas",
-        Contact: "9179013836",
-        Email: "sean_paragas@dlsu.edu.ph",
-        ReceivedDate: "",
-        Stage: "",
-        DateChecked: "",
-        FiledDate: "",
-        Status: "",
-        Remarks: "",
+        // SubmittedBy: "Sean Paragas",
+        // Contact: "9179013836",
+        // Email: "sean_paragas@dlsu.edu.ph",
+        // ReceivedDate: "",
+        Stage: "Completed",
+        // DateChecked: "",
+        // FiledDate: "",
+        // Status: "",
+        // Remarks: "",
+        preacts_details: {
+            status: "Late Approved",
+            file_date: "2018/09/22",
+            submitted_by: "Ivan Dichaves",
+            contact_no: "9275958817",
+            email: "ivan_dichaves@dlsu.edu.ph",
+            remarks: "Mama mo"
+        },
 
+        postacts_details: {
+            status: "Early Incomplete",
+            file_date: "2018/09/22",
+            enp: 45,
+            anp: 40,
+            enmp: 20,
+            anmp: 12,
+            submitted_by: "Gregory Petrola",
+            contact_no: "9178458499",
+            email: "gregory_petrola@dlsu.edu.ph",
+            remarks: "Mama mo"
+        },        
+
+        orgres_details: {
+            q1: [2, 5, 8, 14, 9], // score 1, 2, 3, 4, 5
+            q2: [2, 5, 8, 14, 9],
+            q3: [2, 5, 8, 14, 9],
+            q4: [2, 5, 8, 14, 9],
+            q5: [2, 5, 8, 14, 9]
+        }    
     }
 }
 
