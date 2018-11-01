@@ -22,40 +22,53 @@ export const documents = {
         // Contact: "9179013836",
         // Email: "sean_paragas@dlsu.edu.ph",
         // ReceivedDate: "",
-        Stage: "Completed",
+        // Stage: "Completed",
         // DateChecked: "",
         // FiledDate: "",
         // Status: "",
         // Remarks: "",
         preacts_details: {
-            status: "Late Approved",
-            file_date: "2018/09/22",
-            submitted_by: "Ivan Dichaves",
-            contact_no: "9275958817",
-            email: "ivan_dichaves@dlsu.edu.ph",
-            remarks: "Mama mo"
+            Status: "Late Approved",
+            FileDate: "2018/09/22",
+            SubmittedBy: "Ivan Dichaves",
+            Contact: "9275958817",
+            Email: "ivan_dichaves@dlsu.edu.ph",
+            DateChecked: "2018/09/23",
+            Remarks: "Mama mo"
         },
 
         postacts_details: {
-            status: "Early Incomplete",
-            file_date: "2018/09/22",
-            enp: 45,
-            anp: 40,
-            enmp: 20,
-            anmp: 12,
-            submitted_by: "Gregory Petrola",
-            contact_no: "9178458499",
-            email: "gregory_petrola@dlsu.edu.ph",
-            remarks: "Mama mo"
+            Status: "Early Incomplete",
+            FileDate: "2018/09/25",
+            Enp: 45,
+            Anp: 40,
+            Enmp: 20,
+            Anmp: 12,
+            SubmittedBy: "Gregory Petrola",
+            Contact: "9178458499",
+            Email: "gregory_petrola@dlsu.edu.ph",
+            DateChecked: "2018/09/26",
+            Remarks: "Mama mo"
         },        
 
-        orgres_details: {
-            q1: [2, 5, 8, 14, 9], // score 1, 2, 3, 4, 5
-            q2: [2, 5, 8, 14, 9],
-            q3: [2, 5, 8, 14, 9],
-            q4: [2, 5, 8, 14, 9],
-            q5: [2, 5, 8, 14, 9]
-        }    
+        orgres_details : [
+            { // initial state
+                UpdateDateTime: "2000/01/01", 
+                Q1: [0, 0, 0, 0, 0], // score 1, 2, 3, 4, 5
+                Q2: [0, 0, 0, 0, 0],
+                Q3: [0, 0, 0, 0, 0],
+                Q4: [0, 0, 0, 0, 0],
+                Q5: [0, 0, 0, 0, 0]
+            },
+            { // updated state
+                UpdateDateTime: "2018/11/02",
+                Q1: [2, 5, 8, 14, 9], // score 1, 2, 3, 4, 5
+                Q2: [2, 5, 8, 14, 9],
+                Q3: [2, 5, 8, 14, 9],
+                Q4: [2, 5, 8, 14, 9],
+                Q5: [2, 5, 8, 14, 9]
+            }
+        ]    
     }
 }
 
