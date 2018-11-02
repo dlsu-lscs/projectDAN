@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './NumberInputComponent.css';
+
+class NumberInputComponent extends Component {
+    constructor(){
+        super();
+
+        this.state = {
+           editable: false  
+        }
+        this.changeEditable = this.changeEditable.bind(this);
+    }
+
+    changeEditable() {
+        this.setState({editable: !this.state.editable})
+    }
+
+    render() {
+
+        const { parent, value, min, max } = this.props;
+        let disabled = !this.state.editable
+        return (
+        <div className="NumberInputComponent">
+            <input 
+                parent = {parent}
+                value = { value } 
+                type = "number"
+                min = {min}
+                max = {max}
+                className = "NumberInputField"
+                disabled = { disabled }
+            >
+            </input>
+        </div>
+    );
+  }
+}
+
+export default NumberInputComponent;

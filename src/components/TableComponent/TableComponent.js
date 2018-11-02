@@ -13,22 +13,25 @@ class TableComponent extends Component {
         let table = [];
         let tableHeader = [];
         for (let i = 0; i < headers.length; i++) {
-            tableHeader.push(<th class="TableHeader">{headers[i]}</th>)
+            tableHeader.push(<td key = {i}>{headers[i]}</td>)
         }
-        table.push(<tr> {tableHeader} </tr>);
+        table.push(<tr key = "0" className ="TableHeader">{tableHeader}</tr>);
         for (let i = 0; i < rows.length; i++) {
             let tableRow = [];
             for (let j = 0; j < rows[i].length; j++) {
-                tableRow.push(<td>{rows[i][j]}</td>)
+                tableRow.push(<td key = {j}>{rows[i][j]}</td>)
             }
-            table.push(<tr class = "TableRow"> {tableRow} </tr>);
+            table.push(<tr key = {i + 1} className = "TableRow">{tableRow}</tr>);
         }
         return table;
     }
     render() {
         return (
-            <table class="TableComponent">
-                { this.createTable() }
+            <table className ="TableComponent">
+                <tbody>
+                    { this.createTable() }
+                </tbody>
+                
             </table>
         );
     }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './page-activity-orgres.css';
 
 // import DocumentContainer from '../../smart-components/document-container/document-container';
+import OrgresContainer from '../../smart-components/orgres-container/orgres-container';
 class PageActivityOrgres extends Component {
 
   constructor({ match }){
@@ -12,9 +13,9 @@ class PageActivityOrgres extends Component {
   }
   render() {
     return (
-      <DocumentContainer id = { this.state.id }></DocumentContainer>
+      <OrgresContainer id = { this.state.id }></OrgresContainer>
     );
   }
 }
 
-export default PageViewSpecificDocument;
+export default PageActivityOrgres;
