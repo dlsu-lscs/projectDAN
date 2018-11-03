@@ -38,16 +38,16 @@ class OrgresContainer extends Component {
             for (let i = 0; i < mostRecent[field].length; i++) {
                 row.push(
                     <NumberInputComponent 
-                    parent = {this}
                     value = { mostRecent[field][i] }
                     min = "0"
                     max = {document.PostactsDetails.Anp}
+                    // editable = {this.state.editable}
                     ></NumberInputComponent>);
             }
             results.push(row);
             ctr++;
         }
-        console.log(results)
+        // console.log(results)
         return results
     }
 
@@ -56,13 +56,30 @@ class OrgresContainer extends Component {
         if( documents[id] != null){
             let data = this.getSurveyResults(id);
             this.setState({found: true, document: documents[id], results: data});
-            console.log(this.state.results)
+            // console.log(this.state.results)
         }
 
         // console.log(documents);
     }
     
     changeEditable() {
+        if (this.state.editable) {
+            var fields =  document.getElementsByClassName("NumberInputField")
+            var questions = {}
+            for (let i = 0; i < 5; i++) {
+                var arr = []
+                for (let j = 0; j < 5; j++) {
+                    arr.push(fields[5 * i + j].value)
+                }
+                questions["Q" + (i + 1)] = arr
+            }
+            /*
+                insert questions to database
+            */
+            
+        } else {
+
+        }
         this.setState({editable: !this.state.editable})
     }
 
