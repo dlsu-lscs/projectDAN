@@ -19,10 +19,11 @@ class OrgresContainer extends Component {
         super();
         this.state = {
             document: {},
-            results: []
+            results: [],
+            editable: false
         }
-        this.toggleEditable = this.toggleEditable.bind(this)
         this.getSurveyResults = this.getSurveyResults.bind(this)
+        this.changeEditable = this.changeEditable.bind(this)
     }
 
     getSurveyResults (id) {
@@ -50,14 +51,6 @@ class OrgresContainer extends Component {
         return results
     }
 
-    toggleEditable () {
-        let results = this.state.results
-        for (let i = 0; i < results.length; i++) {
-            for (let j = 1; j < results[i].length; j++) {
-                results[i][j].changeEditable();
-            }
-        }
-    }
     componentDidMount(){
         let { id } = this.props;
         if( documents[id] != null){
@@ -69,6 +62,10 @@ class OrgresContainer extends Component {
         // console.log(documents);
     }
     
+    changeEditable() {
+        this.setState({editable: !this.state.editable})
+    }
+
     render() {
         if(!this.state.found ){
             return(

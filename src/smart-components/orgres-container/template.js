@@ -1,13 +1,9 @@
 import React from 'react';
 
-import InputComponent from '../../components/InputComponent/InputComponent';
 import TableComponent from '../../components/TableComponent/TableComponent';
 
-import { _setInputState } from '../../mixins/InputHandlerMixin';
-import NumberInputComponent from '../../components/NumberInputComponent/NumberInputComponent';
-
 export const template = (component) => {
-    let { document, results } = component.state;
+    let { document, results, editable } = component.state;
     
     return (
         <section className = "orgres-container">
@@ -38,8 +34,9 @@ export const template = (component) => {
                 </div>
             </div>
 
-            <div>
-                <button onClick = {component.toggleEditable}>Update</button>
+            <div className = "orgres-controls">
+                <button id = "ToggleUpdate" onClick = {component.changeEditable}>{editable ? "Save Changes" : "Update"}</button>
+                <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button>
             </div>
         </section>
     );
