@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TableComponent from '../../components/TableComponent/TableComponent';
+import ChartComponent from '../../components/ChartComponent/ChartComponent';
 
 export const template = (component) => {
     let { document, results, editable } = component.state;
@@ -27,17 +28,23 @@ export const template = (component) => {
             <div className = "page-wrapper">
                 <div className = "content-section section-card">
                     <div className = "content-title"><span className = "content-title-span">ORGRES Survey Results</span></div>
+                    <ChartComponent
+                        type = "radar"
+                    >
+                    </ChartComponent>
                     <TableComponent 
-                        headers = {["Survey results", "1", "2", "3", "4", "5"]}
+                        headers = {["Survey Questions", "1", "2", "3", "4", "5"]}
                         rows = {results}
                     ></TableComponent>
+                    <div className = "orgres-controls">
+                        <button id = "ToggleUpdate" onClick = {component.changeEditable}>{editable ? "Save Changes" : "Update"}</button>
+                        {/* <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button> */}
+                    </div>
                 </div>
+                
             </div>
 
-            <div className = "orgres-controls">
-                <button id = "ToggleUpdate" onClick = {component.changeEditable}>{editable ? "Save Changes" : "Update"}</button>
-                {/* <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button> */}
-            </div>
+            
         </section>
     );
 }

@@ -14,11 +14,14 @@ import NumberInputComponent from '../../components/NumberInputComponent/NumberIn
 // import { documents } from '../../utils/databse-sample';
 import { documents } from './databse-sample';
 
+import Chart from 'chart.js';
+
 class OrgresContainer extends Component {
     constructor() {
         super();
         this.state = {
             document: {},
+            chart: "",
             results: [],
             editable: false
         }
@@ -50,11 +53,10 @@ class OrgresContainer extends Component {
         // console.log(results)
         return results
     }
-
     componentDidMount(){
         let { id } = this.props;
         if( documents[id] != null){
-            let data = this.getSurveyResults(id);
+            let data = this.getSurveyResults(id);     
             this.setState({found: true, document: documents[id], results: data});
             // console.log(this.state.results)
         }
@@ -77,8 +79,6 @@ class OrgresContainer extends Component {
                 insert questions to database
             */
             
-        } else {
-
         }
         this.setState({editable: !this.state.editable})
     }
@@ -89,6 +89,7 @@ class OrgresContainer extends Component {
                 <div>Document not found</div>
             )
         }
+        // console.log('rendered.')
         return (template(this));
     }
 }
