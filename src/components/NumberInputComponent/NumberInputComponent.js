@@ -11,16 +11,22 @@ class NumberInputComponent extends Component {
            editable: false  
         }
         this.changeEditable = this.changeEditable.bind(this);
+        // this.reset = this.reset.bind(this)
     }
 
     componentDidMount() {
         document.getElementById("ToggleUpdate").addEventListener('click', this.changeEditable, false);
-        document.getElementById("Cancel").addEventListener('click', this.changeEditable, false);
+        // document.getElementById("Cancel").addEventListener('click', this.reset, false);
     }
 
     changeEditable() {
         this.setState({editable: !this.state.editable})
     }
+
+    // reset() {
+    //     this.forceUpdate();
+    //     this.setState({editable: !this.state.editable})
+    // }
 
     render() {
 

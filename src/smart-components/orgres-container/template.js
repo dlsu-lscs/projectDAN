@@ -36,7 +36,7 @@ export const template = (component) => {
 
             <div className = "orgres-controls">
                 <button id = "ToggleUpdate" onClick = {component.changeEditable}>{editable ? "Save Changes" : "Update"}</button>
-                <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button>
+                {/* <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button> */}
             </div>
         </section>
     );
