@@ -19,7 +19,7 @@ export const template = (component) => {
                     <div className = "right-options right-opt" onClick = {handleSignOutClick}>Signout</div>
                     <div  className = "right-options" >
                         <div className = "usr-img"
-                        style = {{"background-image": "url("+user.image.url+")"}}></div> 
+                        style = {{"backgroundImage": "url("+user.image.url+")"}}></div> 
                         {user.name.givenName}
                     </div>
                 </span>
