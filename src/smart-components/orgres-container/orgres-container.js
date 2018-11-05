@@ -10,7 +10,6 @@ import { auth } from '../../utils/firebase';
 
 import { template } from './template';
 
-import NumberInputComponent from '../../components/NumberInputComponent/NumberInputComponent';
 // import { documents } from '../../utils/databse-sample';
 import { documents } from './databse-sample';
 
@@ -22,42 +21,35 @@ class OrgresContainer extends Component {
         this.state = {
             document: {},
             chart: "",
-            results: [],
+            data: [],
             editable: false
         }
-        this.getSurveyResults = this.getSurveyResults.bind(this)
+        this.getSurveyData = this.getSurveyData.bind(this)
         this.changeEditable = this.changeEditable.bind(this)
     }
 
-    getSurveyResults (id) {
-        let results = [];
-        let ctr = 1;
+    getSurveyData (id) {
+        let data = [];
         var field;
         let document = documents[id]
         var mostRecent = document.OrgresDetails[document.OrgresDetails.length - 1]
         // console.log(mostRecent);
         for (field in mostRecent) {
-            let row = ["Question " + ctr]
+            let row = []
             for (let i = 0; i < mostRecent[field].length; i++) {
-                row.push(
-                    <NumberInputComponent 
-                    value = { mostRecent[field][i] }
-                    min = "0"
-                    max = {document.PostactsDetails.Anp}
-                    // editable = {this.state.editable}
-                    ></NumberInputComponent>);
+                row.push(mostRecent[field][i])
             }
-            results.push(row);
-            ctr++;
+            data.push(row);
         }
         // console.log(results)
-        return results
+        return data
     }
+    
     componentDidMount(){
         let { id } = this.props;
         if( documents[id] != null){
-            let data = this.getSurveyResults(id);     
-            this.setState({found: true, document: documents[id], results: data});
+            let data = this.getSurveyData(id);     
+            this.setState({found: true, document: documents[id], data: data});
             // console.log(this.state.results)
         }
 
@@ -80,6 +72,7 @@ class OrgresContainer extends Component {
             */
             
         }
+        
         this.setState({editable: !this.state.editable})
     }
 

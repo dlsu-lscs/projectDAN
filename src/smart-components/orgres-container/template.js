@@ -1,11 +1,11 @@
 import React from 'react';
 
 import TableComponent from '../../components/TableComponent/TableComponent';
-import ChartComponent from '../../components/ChartComponent/ChartComponent';
+import RadarComponent from '../../components/RadarComponent/RadarComponent'
 
 export const template = (component) => {
-    let { document, results, editable } = component.state;
-    
+    let { document, data, editable } = component.state;
+    // console.log(data)
     return (
         <section className = "orgres-container">
             <div className = "header-section section-card">
@@ -27,18 +27,36 @@ export const template = (component) => {
 
             <div className = "page-wrapper">
                 <div className = "content-section section-card">
-                    <div className = "content-title"><span className = "content-title-span">ORGRES Survey Results</span></div>
-                    <ChartComponent
-                        type = "radar"
-                    >
-                    </ChartComponent>
+                    <div className = "content-title"><span className = "content-title-span">ORGRES Survey data</span></div>
+                    <RadarComponent
+                        data = {data}>
+                    </RadarComponent>
                     <TableComponent 
                         headers = {["Survey Questions", "1", "2", "3", "4", "5"]}
-                        rows = {results}
+                        rows = {data}
                     ></TableComponent>
-                    <div className = "orgres-controls">
-                        <button id = "ToggleUpdate" onClick = {component.changeEditable}>{editable ? "Save Changes" : "Update"}</button>
-                        {/* <button id = "Cancel" onClick = {component.changeEditable} hidden = {!editable}>Cancel</button> */}
+                    <div>
+                        <button 
+                            id = "SaveChanges"
+                            className = "orgres-controls"
+                            onClick = {component.changeEditable}
+                            hidden = {!editable}>
+                        Save Changes
+                        </button>
+                        <button 
+                            id = "ToggleUpdate"
+                            className = "orgres-controls"
+                            onClick = {component.changeEditable}
+                            hidden = {editable}>
+                        Update
+                        </button>
+                        <button 
+                            id = "Cancel"
+                            className = "orgres-controls"
+                            onClick = {component.changeEditable}
+                            hidden = {true}>
+                        Cancel
+                        </button>
                     </div>
                 </div>
                 

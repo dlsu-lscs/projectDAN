@@ -13,6 +13,8 @@ class NumberInputComponent extends Component {
 
     componentDidMount() {
         document.getElementById("ToggleUpdate").addEventListener('click', this.changeEditable, false);
+        document.getElementById("Cancel").addEventListener('click', this.changeEditable, false);
+        document.getElementById("SaveChanges").addEventListener('click', this.changeEditable, false);
     }
 
     changeEditable() {

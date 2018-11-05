@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './TableComponent.css';
 
+import NumberInputComponent from '../../components/NumberInputComponent/NumberInputComponent';
+
 /*
 *    A table component.
 *    Props:
@@ -17,9 +19,16 @@ class TableComponent extends Component {
         }
         table.push(<tr key = "0" className ="TableHeader">{tableHeader}</tr>);
         for (let i = 0; i < rows.length; i++) {
-            let tableRow = [];
+            let tableRow = [<td key = '0'>{"Question " + (i + 1)}</td>];
             for (let j = 0; j < rows[i].length; j++) {
-                tableRow.push(<td key = {j}>{rows[i][j]}</td>)
+                tableRow.push(
+                <td key = {j + 1}>
+                    <NumberInputComponent 
+                    value = { rows[i][j] }
+                    min = "0"
+                    max = "100"
+                    ></NumberInputComponent>
+                </td>)
             }
             table.push(<tr key = {i + 1} className = "TableRow">{tableRow}</tr>);
         }
