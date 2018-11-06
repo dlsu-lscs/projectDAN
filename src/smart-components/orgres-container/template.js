@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TableComponent from '../../components/TableComponent/TableComponent';
+import OrgresTableComponent from '../../components/OrgresTableComponent/OrgresTableComponent';
 import RadarComponent from '../../components/RadarComponent/RadarComponent'
 
 export const template = (component) => {
@@ -31,10 +31,10 @@ export const template = (component) => {
                     <RadarComponent
                         document = {document}>
                     </RadarComponent>
-                    <TableComponent 
+                    <OrgresTableComponent 
                         headers = {["Survey Questions", "1", "2", "3", "4", "5"]}
                         rows = {data}
-                    ></TableComponent>
+                    ></OrgresTableComponent>
                     <div>
                         <button 
                             id = "SaveChanges"

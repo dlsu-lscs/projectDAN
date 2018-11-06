@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './TableComponent.css';
+import './OrgresTableComponent.css';
 
 import NumberInputComponent from '../../components/NumberInputComponent/NumberInputComponent';
 
@@ -9,7 +9,7 @@ import NumberInputComponent from '../../components/NumberInputComponent/NumberIn
 *        headers - an array that will be the table's column headers.
 *        rows - a 2D array that will be the table's content.
 */
-class TableComponent extends Component {
+class OrgresTableComponent extends Component {
     createTable = () => {
         const { headers, rows } = this.props;  
         let table = [];
@@ -46,4 +46,4 @@ class TableComponent extends Component {
     }
 }
 
-export default TableComponent;
+export default OrgresTableComponent;
