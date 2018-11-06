@@ -67,6 +67,7 @@ class OrgresContainer extends Component {
                 }
                 questions["Q" + (i + 1)] = arr
             }
+            this.state.document.OrgresDetails.push(questions)
             /*
                 insert questions to database
             */

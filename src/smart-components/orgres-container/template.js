@@ -27,9 +27,9 @@ export const template = (component) => {
 
             <div className = "page-wrapper">
                 <div className = "content-section section-card">
-                    <div className = "content-title"><span className = "content-title-span">ORGRES Survey data</span></div>
+                    <div className = "content-title"><span className = "content-title-span">ORGRES Survey Data</span></div>
                     <RadarComponent
-                        data = {data}>
+                        document = {document}>
                     </RadarComponent>
                     <TableComponent 
                         headers = {["Survey Questions", "1", "2", "3", "4", "5"]}
