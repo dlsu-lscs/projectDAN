@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { template } from './template';
 import './nav-bar-container.css';
-import {handleSignInClick, handleSignOutClick} from '../../utils/google-auth';
+import {login, logout} from '../../apis/google_login';
 //import { template } from './template';
 class NavBarContainer extends Component {
     constructor(props){
@@ -13,16 +13,16 @@ class NavBarContainer extends Component {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.state = {
-            handleSignInClick: this.login,
-            handleSignOutClick: this.logout,
+            login: this.login,
+            logout: this.logout,
         }
     }
 
     login(){
-        handleSignInClick();
+        login();
     }
     logout(){
-        handleSignOutClick();
+        logout();
         window.location.reload(); //lazies solution, prefer to reset states rather than reload
     }
     render() {

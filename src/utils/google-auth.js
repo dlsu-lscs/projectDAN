@@ -6,50 +6,10 @@
 //this entire file only runs once in routes, it is a reducer combined with google auth
 //this isnt in the actions folder so all the google functions are in one file as all of this should only be called once
 
-import { LOG_IN } from '../actions/actionTypes';
-let dispatch = null; //this gets initialized in initclient
-let init_callback = null;
-const config = {
-  apiKey: "AIzaSyAyhl5iITydfCvD-nX8urw2zgWzat7_fJk",
-  clientId: '1098572407312-ui1vcaed17aiar7dc2fftl2m6erf24o6.apps.googleusercontent.com',
-  scope: 'email https://www.googleapis.com/auth/spreadsheets',
-  ux_mode: "redirect",
-  redirect_uri: "http://localhost:3000/",
-  discoveryDocs: 
-    ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-  spreadsheetId: "1rYtyOLQ-qMM5_uDNukcNoTh5izZPqM5REO1IMNIydNY"
-}
-
-/**
- * Load the cars from the spreadsheet
- * Get the right values from it and assign.
- */
-const load = (callback) => {
-  window.gapi.client.load("sheets", "v4", () => {
-    window.gapi.client.sheets.spreadsheets.values
-      .get({
-        spreadsheetId: config.spreadsheetId,
-        range: "CSO APS!A2:C"
-      })
-      .then(
-        response => {
-          const data = response.result.values;
-          console.log(data);
-          const aps_data = data.map(aps => ({
-            year: aps[0],
-            title: aps[1],
-            org: aps[2]
-          })) || [];
-          callback({
-            aps_data
-          });
-        },
-        response => {
-          callback(false, response.result.error);
-        }
-      );
-  });
-}
+import { api_config } from './google_config';
+import { log_in_user } from '../apis/google_login';
+let dispatch = () => {}; //this gets initialized in initclient
+let init_callback = () => {};
 
 const getUserInfo = () => {
   window.gapi.client.load('plus','v1', function(){
@@ -57,41 +17,27 @@ const getUserInfo = () => {
       'userId': 'me'
     });
     request.execute(function(resp) {
-      dispatch({
-          type: LOG_IN,
-          payload: resp
-      });
-      init_callback();
+      log_in_user(resp, dispatch, init_callback)
     });
    });
 }
 
-const onLoad = (data, error) => {
-    if (data) {
-      //const cars = data.cars;
-      //this.setState({ cars });
-    } else {
-      //this.setState({ error });
-    }
-}
 
 
 function updateSignInStatus(isSignedIn) {
   if (isSignedIn) {
-    console.log(isSignedIn);
     getUserInfo(dispatch);
-    load(onLoad);
   }
   else{
     init_callback();
   }
 }
 
-export const handleSignInClick = (event) => {
+export const handleSignIn = (event) => {
   window.gapi.auth2.getAuthInstance().signIn();
 }
 
-export const handleSignOutClick = (event) => {
+export const handleSignOut = (event) => {
   window.gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -102,13 +48,13 @@ export const initClient = (callback) => {
         // 2. Initialize the JavaScript client library.
         window.gapi.client
           .init({
-            apiKey: config.apiKey,
-            clientId: config.clientId,
-            scope: config.scope,
-            ux_mode: config.ux_mode,
-            redirect_uri: config.redirect_uri,
+            apiKey: api_config.apiKey,
+            clientId: api_config.clientId,
+            scope: api_config.scope,
+            ux_mode: api_config.ux_mode,
+            redirect_uri: api_config.redirect_uri,
             // Your API key will be automatically added to the Discovery Document URLs.
-            discoveryDocs: config.discoveryDocs
+            discoveryDocs: api_config.discoveryDocs
           })
           .then(() => {
           window.gapi.auth2.getAuthInstance().isSignedIn.listen((isSignedIn) => {updateSignInStatus(isSignedIn)});
