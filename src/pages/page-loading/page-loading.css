@@ -1,0 +1,24 @@
+.page-loading{
+  width: 100%;
+  height: 1000px;
+}
+.XD{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://media.giphy.com/media/6XBj2E9Ng2XJu/giphy.gif");
+  margin: auto;
+  background-color: red;
+}
+.loading{
+  width: 600px;
+  margin-top: 150px;
+  height: 400px;
+  font-size: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  margin-left: 25%;
+  color: white;
+  text-align: center;
+  line-height: 400px;
+}
