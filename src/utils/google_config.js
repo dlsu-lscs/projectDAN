@@ -1,6 +1,6 @@
 export const sheet_config = {
     google_sheets_id: "1rYtyOLQ-qMM5_uDNukcNoTh5izZPqM5REO1IMNIydNY",
-    cso_aps_sheet: "CSO APS", //200,000 is the limit
+    csoaps: "CSO APS",
 }
 
 export const api_config = {
