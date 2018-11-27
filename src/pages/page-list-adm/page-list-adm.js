@@ -3,10 +3,9 @@ import './page-list-adm.css';
 
 import NavigationComponent from '../../components/navigation-component/navigation-component';
 import OverviewComponent from '../../components/OverviewComponent/OverviewComponent';
-import TableComponent from '../../components/table-component/table-component';
+import TableComponent from '../../smart-components/table-component/table-component';
 
 class PageListADM extends Component {
-
     constructor({ match }) {
         super();
         this.state={
@@ -32,17 +31,46 @@ class PageListADM extends Component {
                 }
             }, 
             tableHeaders: [ '', 'Last Updated', 'Name', 'Status', 'Remarks'],
-            // dataLabels: [ 'dateTime', 'Name', 'Status', 'Remarks'],
             tableData: [ {
+                id: '1',
                 dateTime: '9/10/2018 13:50:06',
                 name: 'Cat Feeding Around DLSU',
                 status: 'Early Approved',
                 remarks: '',
             },
             {
-                dateTime: '9/10/2018 13:50:06',
+                id: '2',                
+                dateTime: '9/11/2018 13:50:06',
                 name: 'Junior Officer Extravaganza',
                 status: '',
+                remarks: 'No signature and name of person who submitted the documents',
+            },
+            {
+                id: '3',                
+                dateTime: '9/23/2019 13:50:06',
+                name: 'Party Time',
+                status: '',
+                remarks: '',
+            },
+            {
+                id: '4',                
+                dateTime: '9/3/2018 13:50:06',
+                name: 'Bohemian Rhapsody',
+                status: 'Early Approved',
+                remarks: '',
+            },
+            {
+                id: '5',                
+                dateTime: '9/06/2019 13:50:06',
+                name: 'Jammin\' in Jamaica',
+                status: 'Early Approved',
+                remarks: 'No signature and name of person who submitted the documents',
+            },
+            {
+                id: '6',                
+                dateTime: '3/5/2019 13:50:06',
+                name: 'Junior Officer Extravaganza',
+                status: 'Late Approved',
                 remarks: 'No signature and name of person who submitted the documents',
             },
             ]
@@ -50,7 +78,9 @@ class PageListADM extends Component {
     }
 
     componentDidMount() {
-        
+        // get documents through api
+
+        // get 
     }
 
     render() {

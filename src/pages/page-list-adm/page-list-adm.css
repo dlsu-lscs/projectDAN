@@ -29,6 +29,13 @@ body {
     color: var(--color-font);
 }
 
+input[type="text"],
+input[type="password"], {
+    font-family: var(--font);
+    color: var(--color-font);
+    padding: 10px, 20px;
+}
+
 .label {
     color: var(--color-font-lighter);
     font-family: 'Montserrat', sans-serif;
