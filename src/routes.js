@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
 import NavBarContainer from './smart-components/nav-bar-container/nav-bar-container';
 import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
@@ -46,6 +47,7 @@ class Routes extends Component {
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+                        <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
                         <Route path = "/test-adm" component = {PageListADM} exact></Route>
                         <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
                         <Route component = {PageNotfound}></Route>
