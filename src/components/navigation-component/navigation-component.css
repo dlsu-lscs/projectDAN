@@ -1,0 +1,7 @@
+
+#nav-bar {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    margin: 0 0 20px 0;
+}

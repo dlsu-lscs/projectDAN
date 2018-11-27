@@ -5,6 +5,7 @@ import NavBarContainer from './smart-components/nav-bar-container/nav-bar-contai
 import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
 import PageSignup from './pages/page-signup/page-signup';
+import PageListADM from './pages/page-list-adm/page-list-adm';
 import PageNotfound from './pages/page-notfound/page-notfound';
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
@@ -45,6 +46,7 @@ class Routes extends Component {
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+                        <Route path = "/test-adm" component = {PageListADM} exact></Route>
                         <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
                         <Route component = {PageNotfound}></Route>
                     </Switch>
