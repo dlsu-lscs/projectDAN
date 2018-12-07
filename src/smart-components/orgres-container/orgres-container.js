@@ -13,7 +13,7 @@ import { template } from './template';
 // import { documents } from '../../utils/databse-sample';
 import { documents } from './databse-sample';
 
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 
 class OrgresContainer extends Component {
     constructor() {
