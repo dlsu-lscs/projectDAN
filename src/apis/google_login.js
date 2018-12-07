@@ -16,7 +16,7 @@ export function log_in_user(user, dispatch, callback){
         type: LOG_IN,
         payload: user
     });
-    initial_pull();
+    initial_pull(user);
     callback();
 }
 
