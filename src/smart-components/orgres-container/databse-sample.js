@@ -11,7 +11,7 @@ export const documents = {
         TieUpOrgs: ["CSG", "SPRINT", "PTS"],
         Term: "Term 1",
         SubmissionTypeHistory:["Initial Submission"],
-        ActivityTyle: "CCS Teachers' Week 2018",
+        ActivityTitle: "CCS Teachers' Week 2018",
         ActivityDate: "Multiple Dates",
         Dates: "09/24/2018 - 09/28/2018",
         NatureOfActivity: "Lasallian Formation/Spiritual Growth",
@@ -27,7 +27,7 @@ export const documents = {
         // FiledDate: "",
         // Status: "",
         // Remarks: "",
-        preacts_details: {
+        PreactsDetails: {
             Status: "Late Approved",
             FileDate: "2018/09/22",
             SubmittedBy: "Ivan Dichaves",
@@ -37,7 +37,7 @@ export const documents = {
             Remarks: "Mama mo"
         },
 
-        postacts_details: {
+        PostactsDetails: {
             Status: "Early Incomplete",
             FileDate: "2018/09/25",
             Enp: 45,
@@ -51,9 +51,9 @@ export const documents = {
             Remarks: "Mama mo"
         },        
 
-        orgres_details : [
+        OrgresDetails : [
             { // initial state
-                UpdateDateTime: "2000/01/01", 
+                // UpdateDateTime: "2000/01/01", 
                 Q1: [0, 0, 0, 0, 0], // score 1, 2, 3, 4, 5
                 Q2: [0, 0, 0, 0, 0],
                 Q3: [0, 0, 0, 0, 0],
@@ -61,12 +61,12 @@ export const documents = {
                 Q5: [0, 0, 0, 0, 0]
             },
             { // updated state
-                UpdateDateTime: "2018/11/02",
+                // UpdateDateTime: "2018/11/02",
                 Q1: [2, 5, 8, 14, 9], // score 1, 2, 3, 4, 5
                 Q2: [2, 5, 8, 14, 9],
                 Q3: [2, 5, 8, 14, 9],
                 Q4: [2, 5, 8, 14, 9],
-                Q5: [2, 5, 8, 14, 9]
+                Q5: [2, 5, 8, 2, 9]
             }
         ]    
     }
