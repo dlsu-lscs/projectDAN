@@ -47,8 +47,8 @@ class OverviewComponent extends Component {
 OverviewComponent.propTypes = {
     overviewTitle: PropTypes.string.isRequired, 
     overviewDescription: PropTypes.string.isRequired, 
-    submissionsValue: PropTypes.string.isRequired, 
-    awaitingValue: PropTypes.string.isRequired, 
+    submissionsValue: PropTypes.number.isRequired, 
+    awaitingValue: PropTypes.number.isRequired, 
     statsData: PropTypes.object.isRequired, 
     statsOptions: PropTypes.object.isRequired,
 };
