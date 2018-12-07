@@ -2,16 +2,32 @@
 
 ```bash
 projectDAN
-├── CSO_APS
-│   ├── Activity Date_
-│   └── ...other cols
+├── ADM
+│   └── key
+│       ├── ANMP
+│       ├── ANP
+│       └── ...other cols
+├── ADM_HISTORY
+│   └── key
+│       └── ...other cols
 ├── CSO_APS_LENGTH
+├── CSO_ADM_LENGTH
+├── APS
+│   └── key
+│       ├── Activity Date
+│       └── ...other cols
+├── GENERAL
+│   └── key
+│       └── ...other cols
+├── HISTORY
+│   └── key
+│       └── ...other cols
 └── REFERENCE_KEYS
 ```
 
 The databse is structured after the document tracker [excel sheet](https://docs.google.com/spreadsheets/d/1rYtyOLQ-qMM5_uDNukcNoTh5izZPqM5REO1IMNIydNY/edit#gid=1462715434)
 
-## CSO_APS Node
+## APS Node
 This node refers to the CSO APS sheet within the document tracker, the leaves are the exact key value pairs from the sheet. The **Keys** Refer to the **Column Name**.
 
 ## CSO_APS_LENGTH
