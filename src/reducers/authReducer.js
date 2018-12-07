@@ -10,6 +10,7 @@ export default (state = initialState, action) => {
             return initialState;
         
         case REF_KEYS:
+            console.log("ADEDD");
             state['ref_keys'][action.key] = action.val;
             return state;
         
