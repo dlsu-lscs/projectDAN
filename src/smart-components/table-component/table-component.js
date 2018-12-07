@@ -45,53 +45,97 @@ export default class TableComponent extends Component {
     }
     
     predicateBy(prop){
-        return function(a,b){
-            if( a[prop] > b[prop]){
-                return 1;
-            }else if( a[prop] < b[prop] ){
-                return -1;
+        if(prop == 'lastUpdated') {
+            return function(a, b) {
+                var dA = new Date(a[prop]);
+                var dB = new Date(b[prop]);
+
+                if( dA > dB){
+                    return 1;
+                }else if( dA < dB ){
+                    return -1;
+                }
+                return 0;
             }
-            return 0;
-        }
+        } else 
+            return function(a,b){
+                if( a[prop] > b[prop]){
+                    return 1;
+                }else if( a[prop] < b[prop] ){
+                    return -1;
+                }
+                return 0;
+            }
     }
 
-    loadData(headers, data, sort) {
-        var tableHeaders = (<thead>
+    loadData(headers, data, sort, generalData) {
+        var tableHeaders = (<tr>
             { headers.map(function(colName) {
                 return <th className="label">{colName}</th>; })}
-        </thead>);
+        </tr>);
+
+        
+        var formattedData = [];
+        console.log("data count ", data.length);
+        data.forEach((item, i) => {
+            var remarksCombined = '';
+            if(item['Remarks'] != null) {
+                Object.keys(item['Remarks']).map(function(key, index){
+                    if(index > 0) {
+                        remarksCombined = remarksCombined.concat(", ");
+                    }
+                    remarksCombined = remarksCombined.concat(item['Remarks'][key])
+                });
+            }
+            formattedData.push( {
+                lastUpdated: item['Last Updated'],
+                title: item['Title'],
+                status: item['Status'],
+                remarks: remarksCombined,
+            });
+        });
 
         if(sort !== null) {
-            data.sort( this.predicateBy(sort) );
+            formattedData.sort( this.predicateBy(sort) );
         }
 
-        var tableBody = data.map(function(row, i) {
+        var tableBody = formattedData.map(function(row, i) {
+            // var trId = row['id'];
+            var trId = i;
             return (
             <tr className="row-data" >
                 <td>
-                    <Link className="link" to={ 'document/' + row['id'] }>{ i + 1 }</Link>                
+                    <Link className="link" to={ 'document/' + trId }>{ i + 1 }</Link>                
                 </td>
                 {Object.keys(row).map(function(key, index){
                     if(row[key] == "remarks") {
                         return <td className="bold"> 
-                            <Link className="link" to={ 'document/' + row['id'] }>{ row[key] }</Link>
+                            <Link className="link" to={ 'document/' + trId }>{ row[key]}</Link>
                         </td>;
                     } else if(key=="status") {
                         if(row[key] == "Early Approved") {
                             return <td>
-                                <Link className="link" to={ 'document/' + row['id'] }>
+                                <Link className="link" to={ 'document/' + trId }>
                                     <div className="status-label status-ea">{ row[key] }</div>                                
                                 </Link>
                             </td>;
-                        } else {
+                        } else if(row[key] == "Late Approved") {
                             return <td>
-                                <Link className="link" to={ 'document/' + row['id'] }>{ row[key] }</Link>
+                                <Link className="link" to={ 'document/' + trId }>
+                                    <div className="status-label status-la">{ row[key] }</div>                                
+                                </Link>
+                            </td>;
+                        } else{
+                            return <td>
+                                <Link className="link" to={ 'document/' + trId }>{ row[key] }</Link>
                             </td>;
                         }
-                    } else if(key!="id")
+                    } else if(key!="id") {
                         return <td> 
-                            <Link className="link" to={ 'document/' + row['id'] }>{ row[key] }</Link>                        
+                            <Link className="link" to={ 'document/' + trId }>{ row[key] }</Link>                        
                         </td>;
+                    }
+                        
                 })}
             </tr>); 
         });
@@ -105,17 +149,17 @@ export default class TableComponent extends Component {
 
     render() {
 
-        let { tableName, tableHeads, tableData } = this.props;
+        let { tableName, tableHeads, tableData, generalData } = this.props;
 
         var searchKey = this.state.searchString.trim().toLowerCase();
         if(searchKey.length > 0) {
             tableData = tableData.filter(function(i) {
                 console.log(i);
-                return i.name.toLowerCase().match( searchKey );
+                return i.Title.toLowerCase().match( searchKey );
             })
         }
 
-        let { tableHeaders, tableBody } = this.loadData(tableHeads, tableData, 'name');
+        let { tableHeaders, tableBody } = this.loadData(tableHeads, tableData, 'status', generalData);
 
         return (
             <section id="table-content">
@@ -159,8 +203,12 @@ export default class TableComponent extends Component {
                 </div>
                 <div id="table-container">
                     <table cellPadding="0" cellSpacing="0">
-                        { tableHeaders }
-                        { tableBody }
+                        <thead>
+                            { tableHeaders }
+                        </thead>
+                        <tbody>
+                            { tableBody }
+                        </tbody>
                     </table>
                 </div>
             </section>

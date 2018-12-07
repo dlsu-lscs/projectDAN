@@ -5,21 +5,23 @@ import NavigationComponent from '../../components/navigation-component/navigatio
 import OverviewComponent from '../../components/OverviewComponent/OverviewComponent';
 import TableComponent from '../../smart-components/table-component/table-component';
 
+import { get_general_data } from '../../apis/pull_general_data';
+
 class PageListADM extends Component {
     constructor({ match }) {
         super();
         this.state={
-            overviewTitle: "ADM Submissions", 
-            overviewDescription: "Insert ADM Submissions description here.", 
-            submissionsValue: "26", 
-            awaitingValue: "4", 
+            overviewTitle: "APS Submissions", 
+            overviewDescription: "Insert APS Submissions description here.", 
+            submissionsValue: 0, 
+            awaitingValue: 0, 
             statsData: {
-                labels: ["Early Approved", "Late Approved", "Pended", "On Hold",],
+                labels: ["Early Approved", "Late Approved", "Pended", "On Hold", "Processing"],
                 datasets: [{
                     label: "My First dataset",
-                    backgroundColor: ['rgb(43,229,213)', 'rgb(4,192,225)', 'rgb(8,152,216)', 'rgb(89,107,178)'],
+                    backgroundColor: ['rgb(43,229,213)', 'rgb(4,192,225)', 'rgb(8,152,216)', 'rgb(89,107,178)', 'rgb(200, 200, 200)'],
                     // borderColor: 'rgb(255, 99, 132)',
-                    data: [7, 10, 5, 2,],
+                    data: [0, 0, 0, 0, 0],
                 }]
             }, 
             statsOptions: {
@@ -31,62 +33,54 @@ class PageListADM extends Component {
                 }
             }, 
             tableHeaders: [ '', 'Last Updated', 'Name', 'Status', 'Remarks'],
-            tableData: [ {
-                id: '1',
-                dateTime: '9/10/2018 13:50:06',
-                name: 'Cat Feeding Around DLSU',
-                status: 'Early Approved',
-                remarks: '',
-            },
-            {
-                id: '2',                
-                dateTime: '9/11/2018 13:50:06',
-                name: 'Junior Officer Extravaganza',
-                status: '',
-                remarks: 'No signature and name of person who submitted the documents',
-            },
-            {
-                id: '3',                
-                dateTime: '9/23/2019 13:50:06',
-                name: 'Party Time',
-                status: '',
-                remarks: '',
-            },
-            {
-                id: '4',                
-                dateTime: '9/3/2018 13:50:06',
-                name: 'Bohemian Rhapsody',
-                status: 'Early Approved',
-                remarks: '',
-            },
-            {
-                id: '5',                
-                dateTime: '9/06/2019 13:50:06',
-                name: 'Jammin\' in Jamaica',
-                status: 'Early Approved',
-                remarks: 'No signature and name of person who submitted the documents',
-            },
-            {
-                id: '6',                
-                dateTime: '3/5/2019 13:50:06',
-                name: 'Junior Officer Extravaganza',
-                status: 'Late Approved',
-                remarks: 'No signature and name of person who submitted the documents',
-            },
-            ]
+            generalData: [],
         }
+        this.generalDataToState = this.generalDataToState.bind(this);
+    }
+
+    generalDataToState(data){
+        console.log("GEN DATA", data);
+        this.setState({ generalData: data});
+
+        this.setState({awaitingValue: this.state.statsData.datasets[0].data[4]});
+
+        this.setState({submissionsValue: this.state.generalData.length});
+        var count = 0;
+        this.state.generalData.forEach( (item, index) => {
+            var statsDataCopy = this.state.statsData;
+
+            if(item.Status == "Early Approved") {
+                statsDataCopy.datasets[0].data[0] += 1;
+                this.setState({statsData: statsDataCopy});
+            } else if(item.Status == "Late Approved") {
+                statsDataCopy.datasets[0].data[1] += 1;
+                this.setState({statsData: statsDataCopy});
+            } else if(item.Status == "Pending" || item.Status == "Pended") {
+                statsDataCopy.datasets[0].data[2] += 1;
+                this.setState({statsData: statsDataCopy});
+            } else if(item.Status == "On Hold") {
+                statsDataCopy.datasets[0].data[3] += 1;
+                this.setState({statsData: statsDataCopy});
+            } else {
+                statsDataCopy.datasets[0].data[4] += 1;
+                this.setState({statsData: statsDataCopy});
+            } 
+            count++;
+        });
+        this.setState({awaitingValue: this.state.statsData.datasets[0].data[4]});
+        this.setState({submissionsValue: count});
+        console.log(this.state.statsData);
     }
 
     componentDidMount() {
-        // get documents through api
-
-        // get 
+        
+        get_general_data(this.generalDataToState);
     }
 
     render() {
         return (
             <div>
-                <NavigationComponent />
+                {/* <NavigationComponent /> */}
                 <OverviewComponent overviewTitle={ this.state.overviewTitle }
                     overviewDescription={ this.state.overviewDescription} 
                     submissionsValue={ this.state.submissionsValue }
@@ -95,7 +89,7 @@ class PageListADM extends Component {
                     statsOptions={ this.state.statsOptions }/>
                 <TableComponent tableName="Submitted APS"
                     tableHeads={ this.state.tableHeaders}
-                    tableData={ this.state.tableData}
+                    tableData={ this.state.generalData}
                     />
             </div>
         );
