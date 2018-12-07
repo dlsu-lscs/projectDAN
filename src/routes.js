@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-<<<<<<< HEAD
 import LoadBarContainer from './components/load-bar-container/load-bar-container';
-=======
 import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
->>>>>>> 4786cd68642e145741299857fa9c7de644a78a39
 import NavBarContainer from './smart-components/nav-bar-container/nav-bar-container';
 // import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
-<<<<<<< HEAD
-import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
-=======
->>>>>>> 4786cd68642e145741299857fa9c7de644a78a39
 import PageSignup from './pages/page-signup/page-signup';
 import PageListADM from './pages/page-list-adm/page-list-adm';
 import PageNotfound from './pages/page-notfound/page-notfound';
-<<<<<<< HEAD
 import { GetKeys } from './actions/authentication';
-=======
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
->>>>>>> 4786cd68642e145741299857fa9c7de644a78a39
+import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
+import { AuthenticateUser } from './actions/authentication';
 import { initClient } from '../src/utils/google-auth';
 class Routes extends Component {
     constructor(){

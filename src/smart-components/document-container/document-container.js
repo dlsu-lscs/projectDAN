@@ -42,6 +42,7 @@ class DocumentContainer extends Component {
         get_det_info(id, det_info => {
             this.setState({details: det_info})
         })
+
     }
     render() {
         if(!this.state.found ){
