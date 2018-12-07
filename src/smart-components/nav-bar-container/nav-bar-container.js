@@ -35,6 +35,7 @@ NavBarContainer.propTypes = {
     history: PropTypes.object.isRequired
 };
 const mapStateToProps = state => {
+    console.log("STAATE", state);
     return { user: state.authReducer.user };
 }
 export default connect(mapStateToProps, null)(withRouter(NavBarContainer));

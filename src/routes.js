@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import LoadBarContainer from './components/load-bar-container/load-bar-container';
 import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
 import NavBarContainer from './smart-components/nav-bar-container/nav-bar-container';
-import PageLoading from './pages/page-loading/page-loading';
+// import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
 import PageSignup from './pages/page-signup/page-signup';
 import PageListADM from './pages/page-list-adm/page-list-adm';
 import PageNotfound from './pages/page-notfound/page-notfound';
 import { GetKeys } from './actions/authentication';
+import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
+import { AuthenticateUser } from './actions/authentication';
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
 import { initClient } from '../src/utils/google-auth';
@@ -31,6 +34,8 @@ class Routes extends Component {
             this.setState( { loading: false })
         }
         
+        this.props.GetKeys();
+        
         if(this.state.user){
             callback();
         }
@@ -40,21 +45,21 @@ class Routes extends Component {
                 this.setState({user: user}) // I have no idea if this has an effect XD
             });
         }
-        this.props.GetKeys();
         //loading is finished when all of google's promises are done
         //this.props.AuthenticateUser();
     }
     render() {
-        if(this.state.loading){
-            return(
-                <PageLoading></PageLoading>
-            );
-        }
-        else
+        // if(this.state.loading){
+        //     return <LoadBarContainer></LoadBarContainer>
+        // }
+        // else
         return(
             <BrowserRouter>
                 <div>
-                    <NavBarContainer></NavBarContainer>
+                    {String(this.state.loading) === 'true' ?
+                        <LoadBarContainer></LoadBarContainer>:
+                        <NavBarContainer></NavBarContainer>
+                    }
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>

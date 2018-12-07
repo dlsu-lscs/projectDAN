@@ -1,0 +1,56 @@
+.navigation-container{
+    background-color: #ffffffff;
+    width: 100%;
+    height: 80px;
+}
+
+.nav-wrapper{
+    max-width: 1100px;
+    margin: 10px;
+    padding: 10px;
+    margin: auto;
+}
+
+.proj-title{
+    line-height: 60px;
+    color: #999999;
+    font-size: 25px;
+}
+
+/* idk how to font */
+.dan-title{
+    color:#19baff;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.left-options{
+    float: left;
+}
+
+.right-options{
+    float: right;
+    color: #666666;
+    padding: 10px;
+
+}
+.right-opt{
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+}
+
+.right-opt:hover{
+    border-bottom: #19baff solid;
+}
+
+.usr-img{
+    float: left;
+    margin-top: -5px;
+    margin-right: 10px;
+    border-radius: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    background-color: 20px;
+    background-color: #666666;
+}

@@ -35,10 +35,11 @@
     height: 100%;
     line-height: 115px;
     text-align: right;
-    width: 300px;
-    font-size: 24px;
+    max-width: 600px;
+    font-size: 1.4vw;
     color: #808080;
     float: left;
+    word-wrap: break-word;
 }
 
 .lastedit-section{
@@ -123,6 +124,8 @@
     border-color: #6aa84fff;
     background-color: #6aa84fff;
     border-radius: 50px;
+    height: 9px;
+    margin-top: 20px;
 }
 .stage-1{
     width: 0%;
@@ -188,4 +191,21 @@
 
 .gen-info-title {
 
+}
+.placeholder {
+    height: 10px;
+    margin: 10px;
+    animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(165, 165, 165, 0.1)
+    }
+    50% {
+        background-color: rgba(165, 165, 165, 0.3)
+    }
+    100% {
+        background-color: rgba(165, 165, 165, 0.1)
+    }
 }
