@@ -1,15 +1,17 @@
 import React from 'react';
 export const template = (component) => {
-    let { document } = component.state;
+    let { general , aps, details } = component.state;
     return (
         <section className = "document-container">
             <div className = "header-section section-card">
                 <div className = "header-wrapper">
+                    {general?
+                    <div>
                     <div className = "title-section">
-                        {document.ActivityTyle}
+                        {general.Title}
                     </div>
                     <div className = "lastedit-section">
-                        Last updated {document.LastEdited}
+                        Last updated {general['Last Updated']}
                     </div>
 
                     <div className = "header-options">
@@ -17,6 +19,12 @@ export const template = (component) => {
                             <div className = "filter-toggle"></div>
                         </div>
                     </div>
+                    </div>:
+                    <div>
+                        <div className = "placeholder" style = {{height: '25px'}}></div>
+                        <div className = "placeholder" style = {{width: '80%', height: '20px'}}></div>
+                    </div>
+                    }
                 </div>
             </div>
 
@@ -56,25 +64,35 @@ export const template = (component) => {
                     <div className = "gen-info-section">
                         <div className = "gen-info-block">
                                 <div className = "gen-info-title t1">Duration</div>
-                                <div className = "gen-info-content t2">Multiple dates</div>
+                                {aps?
+                                <div className = "gen-info-content t2">{aps.Duration}</div>
+                                :<div></div>}
                         </div>
                         <div className = "gen-info-block">
                                 <div className = "gen-info-title t1">Date(s)</div>
+                                {aps?
                                 <div className = "gen-info-content t2">
-                                    <div>September 22, 2018 </div>
-                                    <div>October 6, 2018 </div>
+                                    <div>{aps.Dates}</div>
+                                    {/* <div>October 6, 2018 </div> */}
                                 </div>
+                                :<div></div>}
                         </div>
                         <div className = "gen-info-block">
                                 <div className = "gen-info-title t1">Time</div>
                                 <div className = "gen-info-content t2">
-                                    <div>15:00 - 21:00 </div>
-                                    <div>15:00 - 21:00 </div>
+                                    {details?
+                                    <div>{details['Activity Time']} </div>:
+                                    <div></div>
+                                    }
+                                    {/* <div>15:00 - 21:00 </div> */}
                                 </div>
                         </div>
                         <div className = "gen-info-block">
-                                <div className = "gen-info-title t1">Venu</div>
-                                <div className = "gen-info-content t2">G204</div>
+                                <div className = "gen-info-title t1">Venue</div>
+                                {details?
+                                <div className = "gen-info-content t2">{details['Activity Venue']}</div>:
+                                <div className = "gen-info-content t2"></div>
+                                }
                         </div>
                     </div>
                 </div>

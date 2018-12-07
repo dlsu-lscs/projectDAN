@@ -29,7 +29,7 @@ function updateSignInStatus(isSignedIn) {
     getUserInfo(dispatch);
   }
   else{
-    init_callback();
+    init_callback(null);
   }
 }
 
