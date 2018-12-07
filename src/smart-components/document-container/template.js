@@ -1,8 +1,10 @@
 import React from 'react';
+import SideDrawerComponent from '../../components/SideDrawerComponent/SideDrawerComponent';
 export const template = (component) => {
-    let { general , aps, details } = component.state;
+    let { general , aps, details, radarIcon } = component.state;
     return (
         <section className = "document-container">
+            <SideDrawerComponent></SideDrawerComponent>
             <div className = "header-section section-card">
                 <div className = "header-wrapper">
                     {general?
@@ -16,7 +18,7 @@ export const template = (component) => {
 
                     <div className = "header-options">
                         <div className = "filter-toggle-container">
-                            <div className = "filter-toggle"></div>
+                            <div className = "filter-toggle"><img src = {radarIcon} style = {{height: "35px", width: "35px", "margin-left": "22.5%", "margin-top": "5%"}} alt = "gaphs"></img></div>
                         </div>
                     </div>
                     </div>:
