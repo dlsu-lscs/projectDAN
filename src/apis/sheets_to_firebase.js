@@ -1,11 +1,12 @@
 /**
  * This api is in charge of transfering data from
+ * The main function is initial_pull which gets called after google api says we have user
  */
 
 import { database } from '../utils/firebase';
 import { _pullDataFromSheet } from '../helpers/pullDataFromSheet';
 import { sheet_config } from '../utils/google_config';
-import { convertCSOdata } from '../helpers/sheetToObjectHelper';
+import { convertCSOdata, convertADMdata } from '../helpers/sheetToObjectHelper';
 /**
  * @todo create a function
  * @param {*} sheet 
@@ -40,7 +41,7 @@ function Generate_Reference_Keys(doc_obj, updates, ref_keys){
         const activity_title = doc_obj['DOCUMENT'][i]['NORMALIZED TITLE'];
         if(activity_title){
             if(ref_keys[activity_title] != null){
-                console.log("MERON NA BOI", i, ref_keys[activity_title]);
+                // console.log("MERON NA BOI", i, ref_keys[activity_title]);
                 doc_obj['DOCUMENT'][i]['DOCUMENTID'] = ref_keys[activity_title];
             }
             else{
@@ -94,6 +95,30 @@ function Sheet_To_Object(sheet, length){
     
 }
 
+function retrieve_adm(updates){
+    database.ref(sheet_config.csoadm+'_LENGTH').once('value').then( snapshot => {
+        const length = snapshot.val() || 0;
+        const begin = 2+snapshot.val();
+        const ranges = ["!1:1", "!"+begin+":200000"];
+        _pullDataFromSheet(sheet_config.csoadm, ranges, sheet => {
+            let adm_obj = Sheet_To_Object(sheet, length);
+            if(adm_obj){
+                console.log("ADM OBJ", adm_obj);
+                database.ref('REFERENCE_KEYS').once('value').then( refkeys => {
+                    let reference_keys = refkeys.val() || {};
+                    Generate_Reference_Keys(adm_obj, updates, reference_keys);
+                    convertADMdata(updates,adm_obj);
+
+                    updates[sheet_config.csoadm+'_LENGTH'] = adm_obj['DOCUMENT_LENGTH'];
+                    
+                    console.log(updates);
+                    // database.ref().update(updates);
+                });
+            }
+        });
+    })
+}
+
 export function initial_pull(){
     // Bare with me, This part uses alot of async functions that requires callbacks since the functions
     // we need them to come right after each other and pass their data
@@ -119,11 +144,13 @@ export function initial_pull(){
                     // FINALLY: SET UPDATES TO BE SENT TO FIREBASE TO OBJECTS
                     // updates[sheet_config.csoaps] = cso_obj['DOCUMENT'];
                     updates[sheet_config.csoaps+'_LENGTH'] = cso_obj['DOCUMENT_LENGTH'];
-                    
+                    retrieve_adm(updates);
                     console.log(updates);
                     // database.ref().update(updates);
                 });
             }
         });
     })
+    
+    
 }

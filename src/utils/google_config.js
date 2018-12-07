@@ -1,6 +1,7 @@
 export const sheet_config = {
     google_sheets_id: "1rYtyOLQ-qMM5_uDNukcNoTh5izZPqM5REO1IMNIydNY",
     csoaps: "CSO APS",
+    csoadm: "CSO ADM",
 }
 
 export const api_config = {
