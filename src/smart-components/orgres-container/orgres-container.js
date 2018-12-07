@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import './orgres-container.css';
 
-import { _setInputState } from '../../mixins/InputHandlerMixin';
+import { _setInputState } from '../../helpers/InputHandlerHelper';
 
 import { auth } from '../../utils/firebase';
 

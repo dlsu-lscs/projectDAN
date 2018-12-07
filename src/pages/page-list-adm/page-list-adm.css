@@ -8,8 +8,10 @@
     --color-border: rgb(226,226,226);
     --color-table-accent: rgb(221,236,242); 
     --color-table-header: rgb(242,242,242); 
-    --color-status-ea-text: rgb(54,117,31);
-    --color-status-ea-bg: rgb(216,223,210);
+    --color-status-ea-text:  rgb(67, 119, 114);
+    --color-status-ea-bg: rgb(174, 211, 208);
+    --color-status-la-text: rgb(54,117,31);
+    --color-status-la-bg: rgb(216,223,210);
     --font: "Proxima Nova";
 }
 
@@ -27,6 +29,7 @@ body {
     background-color: var(--color-bg-global);
     font-family: var(--font);
     color: var(--color-font);
+    margin-bottom: 70px;
 }
 
 input[type="text"],
