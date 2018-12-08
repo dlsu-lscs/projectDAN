@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoadBarContainer from './components/load-bar-container/load-bar-container';
-import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
+
 import NavBarContainer from './smart-components/nav-bar-container/nav-bar-container';
 // import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
+import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document'
 import PageSignup from './pages/page-signup/page-signup';
-import PageListADM from './pages/page-list-adm/page-list-adm';
 import PageNotfound from './pages/page-notfound/page-notfound';
 import { GetKeys } from './actions/authentication';
+
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
+import PageListADM from './pages/page-list-adm/page-list-adm';
 import { initClient } from '../src/utils/google-auth';
 class Routes extends Component {
     constructor(){
@@ -60,6 +62,7 @@ class Routes extends Component {
                     }
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
+                        <Route path = "/signup" component = {PageSignup} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
                         <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
                         <Route path = "/test-adm" component = {PageListADM} exact></Route>

@@ -8,6 +8,7 @@ import { template } from './template';
 
 // import { documents } from '../../utils/databse-sample';
 import { connect } from 'react-redux';
+import radarIcon from '../../assets/radar-icon.png';
 class DocumentContainer extends Component {
     constructor(props){
         super(props);
@@ -18,7 +19,7 @@ class DocumentContainer extends Component {
             details: null,
             aps: null,
             empty: true,
-
+            radarIcon: radarIcon
         }
         this.getDocumentInfo = this.getDocumentInfo.bind(this);
     }
