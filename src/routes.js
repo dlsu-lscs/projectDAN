@@ -13,8 +13,6 @@ import { GetKeys } from './actions/authentication';
 
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
 import { AuthenticateUser } from './actions/authentication';
-import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
-import { AuthenticateUser } from './actions/authentication';
 import { initClient } from '../src/utils/google-auth';
 class Routes extends Component {
     constructor(){
