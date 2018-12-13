@@ -19,15 +19,24 @@ class DocumentContainer extends Component {
             details: null,
             aps: null,
             empty: true,
-            radarIcon: radarIcon
+            radarIcon: radarIcon,
+            drawerOn: false
         }
         this.getDocumentInfo = this.getDocumentInfo.bind(this);
+        this.setDrawer = this.setDrawer.bind(this);
+        this.unSetDrawer = this.unSetDrawer.bind(this);
     }
     componentDidMount(){
         let { id } = this.props;
         this.getDocumentInfo(id);
     }
     
+    setDrawer(){
+        this.setState({drawerOn: true});
+    }
+    unSetDrawer(){
+        this.setState({drawerOn: false});
+    }
     getDocumentInfo(id){
         get_general_info(id, gen_info => {
             if(gen_info){

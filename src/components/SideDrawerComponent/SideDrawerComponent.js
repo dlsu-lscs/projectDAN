@@ -7,26 +7,24 @@ class SideDrawerComponent extends Component {
     super(props);
     this.state = {
       width: "600px",
-      childs: <div></div>,
       active: true,
+    }
+    if(this.props.active != null ){
+      this.setState({active: this.props.active});
     }
     if(this.props.drawerwidth){
       this.setState({width: this.props.drawerwidth})
     }
-    if(this.props.drawerComponents){
-      this.setState({childs: this.props.drawerComponents})
-    }
-    this.untoggle = this.untoggle.bind(this);
-  }
-  untoggle(){
-    this.setState({active: false});
+    this.untoggle = this.props.untoggle;
   }
   render() {
-
+    if(this.props.active){
+      this.setState
+    }
     return (
-      <div className = {"DrawerHidden "+ (this.state.active? "DrawerWrapper": "")} onClick = {this.untoggle}>
-        <div className = {"SideDrawerHidden "+(this.state.active? "SideDrawer": "")} style = {{width: this.state.width}}>
-            {this.props.childs}
+      <div className = {"DrawerHidden "+ (this.props.active? "DrawerWrapper": "")} onClick = {this.untoggle}>
+        <div className = {"SideDrawerHidden "+(this.props.active? "SideDrawer": "")} style = {{width: this.state.width}}>
+            {this.props.children}
         </div>
       </div>
     );
@@ -35,7 +33,6 @@ class SideDrawerComponent extends Component {
 
 SideDrawerComponent.propTypes = {
     parent: PropTypes.object.isRequired,
-    value: PropTypes.string.isRequired,
 };
 
 export default SideDrawerComponent;

@@ -15,11 +15,13 @@
     --font: "Proxima Nova";
 }
 
+/*
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+*/
 
 .bold {
     font-weight: bold;
@@ -27,7 +29,7 @@
 
 body {
     background-color: var(--color-bg-global);
-    font-family: var(--font);
+    font-family: var(--font || "sans-serif");
     color: var(--color-font);
     margin-bottom: 70px;
 }

@@ -1,10 +1,15 @@
 import React from 'react';
 import SideDrawerComponent from '../../components/SideDrawerComponent/SideDrawerComponent';
+import OrgresContainer from '../../smart-components/orgres-container/orgres-container';
 export const template = (component) => {
-    let { general , aps, details, radarIcon } = component.state;
+    let { general , aps, details, radarIcon, drawerOn } = component.state;
     return (
         <section className = "document-container">
-            <SideDrawerComponent></SideDrawerComponent>
+            <SideDrawerComponent 
+                active = {drawerOn}
+                untoggle = {component.unSetDrawer}>
+                <OrgresContainer id = { 1 }></OrgresContainer>
+            </SideDrawerComponent>
             <div className = "header-section section-card">
                 <div className = "header-wrapper">
                     {general?
@@ -18,7 +23,7 @@ export const template = (component) => {
 
                     <div className = "header-options">
                         <div className = "filter-toggle-container">
-                            <div className = "filter-toggle"><img src = {radarIcon} style = {{height: "35px", width: "35px", "margin-left": "22.5%", "margin-top": "5%"}} alt = "gaphs"></img></div>
+                            <div className = "filter-toggle" onClick = {component.setDrawer}><img src = {radarIcon} style = {{height: "35px", width: "35px", "margin-left": "22.5%", "margin-top": "5%"}} alt = "gaphs"></img></div>
                         </div>
                     </div>
                     </div>:

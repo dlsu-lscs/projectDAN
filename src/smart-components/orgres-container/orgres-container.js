@@ -6,8 +6,6 @@ import './orgres-container.css';
 
 import { _setInputState } from '../../helpers/InputHandlerHelper';
 
-import { auth } from '../../utils/firebase';
-
 import { template } from './template';
 
 // import { documents } from '../../utils/databse-sample';

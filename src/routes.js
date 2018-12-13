@@ -12,7 +12,6 @@ import PageNotfound from './pages/page-notfound/page-notfound';
 import { GetKeys } from './actions/authentication';
 
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
-import { AuthenticateUser } from './actions/authentication';
 import PageListADM from './pages/page-list-adm/page-list-adm';
 import { initClient } from '../src/utils/google-auth';
 class Routes extends Component {
@@ -59,14 +58,15 @@ class Routes extends Component {
                     {String(this.state.loading) === 'true' ?
                         <LoadBarContainer></LoadBarContainer>:
                         <NavBarContainer></NavBarContainer>
-                    }
+                    }   
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
-                        <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
                         <Route path = "/test-adm" component = {PageListADM} exact></Route>
-                        <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
+                        <Route path = "/document/:id" component = {PageViewSpecificDocument} exact></Route>
+
+                        <Route path = "/document/:id/orgres" component = {PageActivityOrgres}></Route> 
                         <Route component = {PageNotfound}></Route>
                     </Switch>
                 </div>
