@@ -8,22 +8,6 @@ export const template = (component) => {
     // console.log(data)
     return (
         <section className = "orgres-container">
-            <div className = "header-section section-card">
-                <div className = "header-wrapper">
-                    <div className = "title-section">
-                        {document.ActivityTitle}
-                    </div>
-                    <div className = "lastedit-section">
-                        Last updated {document.LastEdited}
-                    </div>
-
-                    <div className = "header-options">
-                        <div className = "filter-toggle-container">
-                            <div className = "filter-toggle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div className = "page-wrapper">
                 <div className = "content-section section-card">
@@ -31,6 +15,7 @@ export const template = (component) => {
                     <RadarComponent
                         document = {document}>
                     </RadarComponent>
+                    {/*
                     <OrgresTableComponent 
                         headers = {["Survey Questions", "1", "2", "3", "4", "5"]}
                         rows = {data}
@@ -58,6 +43,8 @@ export const template = (component) => {
                         Cancel
                         </button>
                     </div>
+
+                    */}
                 </div>
                 
             </div>

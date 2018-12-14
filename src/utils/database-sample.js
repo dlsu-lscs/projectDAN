@@ -3,7 +3,7 @@
      this file acts as a temporary database while firebase is not going to be used
  */
 export const documents = {
-    1: {
+    0: {
         LastEdited: "13/09/2018, 5:43:48 PM",   // Changes
         StudentGroup: "Council of Student Organizations (CSO)",
         TieUpOrgs: ["CSG", "SPRINT", "PTS"],

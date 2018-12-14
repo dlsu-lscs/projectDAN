@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoadBarContainer from './components/load-bar-container/load-bar-container';
-import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document';
+
 import NavBarContainer from './smart-components/nav-bar-container/nav-bar-container';
 // import PageLoading from './pages/page-loading/page-loading';
 import PageLogin from './pages/page-login/page-login'; //replace this?
+import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document'
 import PageSignup from './pages/page-signup/page-signup';
+<<<<<<< HEAD
+=======
 import PageListAPS from './pages/page-list-aps/page-list-aps';
+>>>>>>> dcd0fc916786876a6146d0f7c9f24e3a50e3286d
 import PageNotfound from './pages/page-notfound/page-notfound';
 import { GetKeys } from './actions/authentication';
+
 import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
-import { AuthenticateUser } from './actions/authentication';
-import PageActivityOrgres from './pages/page-activity-orgres/page-activity-orgres';
-import { AuthenticateUser } from './actions/authentication';
+import PageListADM from './pages/page-list-adm/page-list-adm';
 import { initClient } from '../src/utils/google-auth';
 class Routes extends Component {
     constructor(){
@@ -59,13 +62,21 @@ class Routes extends Component {
                     {String(this.state.loading) === 'true' ?
                         <LoadBarContainer></LoadBarContainer>:
                         <NavBarContainer></NavBarContainer>
-                    }
+                    }   
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+<<<<<<< HEAD
+                        <Route path = "/signup" component = {PageSignup} exact></Route>
+                        <Route path = "/test-adm" component = {PageListADM} exact></Route>
+                        <Route path = "/document/:id" component = {PageViewSpecificDocument} exact></Route>
+
+                        <Route path = "/document/:id/orgres" component = {PageActivityOrgres}></Route> 
+=======
                         <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
                         <Route path = "/home" component = {PageListAPS} exact></Route>
                         <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
+>>>>>>> dcd0fc916786876a6146d0f7c9f24e3a50e3286d
                         <Route component = {PageNotfound}></Route>
                     </Switch>
                 </div>

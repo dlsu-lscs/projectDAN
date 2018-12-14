@@ -70,7 +70,9 @@ export function convertCSOdata(updates, cso_obj){
         updates['GENERAL'][docid]['Title'] = cso_doc['Activity Title'];
         updates['GENERAL'][docid]['Last Updated'] = cso_doc['Timestamp'];
         updates['GENERAL'][docid]['Status'] = (!cso_doc['Status'] ? 'No Status': cso_doc['Status']);
+        updates['GENERAL'][docid]['Remarks'] = cso_doc['Remarks'] || "";
         update_object_property(updates,'HISTORY',docid,'Title',realid,cso_doc['Activity Title']);
+        update_object_property(updates,'HISTORY',docid,'Remarks',realid,cso_doc['Remarks']);
         update_object_property(updates,'HISTORY',docid,'Timestamps',realid,cso_doc['Timestamp']);
         update_object_property(updates,'HISTORY',docid,'Status',realid,cso_doc['Status'] === ''? 'No Status': cso_doc['Status']);
         if(cso_obj['DOCUMENT'][i]['remarks']){
@@ -165,10 +167,12 @@ export function convertADMdata(updates, adm_obj){
         udpate_if_exist(updates,'ADM',docid,'ANMP',adm_doc['Actual Number of Member Participants (ANMP)']);
         udpate_if_exist(updates,'ADM',docid,'EXPENSES',adm_doc['Expenses Incurred']);
         udpate_if_exist(updates,'ADM',docid,'ENP',adm_doc['Estimated Number of Participants (ENP)']);
-        udpate_if_exist(updates,'ADM',docid,'ENP',adm_doc['Timestamp']);
+        udpate_if_exist(updates,'ADM',docid,'Status',adm_doc['Status']);
+        // udpate_if_exist(updates,'ADM',docid,'ENP',adm_doc['Timestamp']);
         udpate_if_exist(updates,'ADM',docid,'Last Updated',adm_doc['Timestamp']);
         udpate_if_exist(updates,'ADM',docid,'Checked By',adm_doc['Checked By:↵(Exeteam)']);
         udpate_if_exist(updates,'ADM',docid,'Date Logged',adm_doc['Date Logged']);
+        udpate_if_exist(updates,'ADM',docid,'Title',adm_doc['Activity Title']);
         // SOBRANG KULANG PERO NAKAKATAMAD XD
         update_object_property(updates,'ADM_HISTORY',docid,'ENP', realid, adm_doc['Estimated Number of Participants (ENP)']);
         update_object_property(updates,'ADM_HISTORY',docid,'ANP', realid, adm_doc['Actual Number of Participants (ANP)']);
@@ -180,6 +184,7 @@ export function convertADMdata(updates, adm_obj){
         update_object_property(updates,'ADM_HISTORY',docid,'Last Updated', realid, adm_doc['Timestamp']);
         update_object_property(updates,'ADM_HISTORY',docid,'Checked By', realid, adm_doc['Checked By:↵(Exeteam)']);
         update_object_property(updates,'ADM_HISTORY',docid,'Date Logged', realid, adm_doc['Date Logged']);
-
+        update_object_property(updates,'ADM_HISTORY',docid,'Status', realid, adm_doc['Status']);
+        update_object_property(updates,'ADM_HISTORY',docid,'Title', realid, adm_doc['Activity Title']);
     }
 }

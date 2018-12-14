@@ -1,0 +1,46 @@
+
+.DrawerHidden{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 89898;
+    top: 0;
+    left: 0;
+    transition: all 0.25s ease-in;
+    visibility: hidden;
+  }
+  
+.ShadowDrawerHidden{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0, 0);
+    z-index: 89899;
+    top: 0;
+    left: 0;
+    transition: all 0.25s ease-in;
+    visibility: hidden;
+}
+
+.SideDrawerHidden{
+    visibility: hidden;
+    right: -600px;
+    position: absolute;
+    z-index: 89905;
+    height: 100%;
+    width: 600px;
+    background-color: #f3f3f3ff;
+    transition: all 0.25s ease-in;
+}
+.DrawerWrapper{
+    visibility: visible;
+}
+.ShadowDrawer{
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.SideDrawer{
+    visibility: visible;
+    right: 0;
+}

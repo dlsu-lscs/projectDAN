@@ -48,6 +48,13 @@ function Generate_Reference_Keys(doc_obj, updates, ref_keys){
                 // console.log("New", activity_title);
                 ref_keys[activity_title] = Number(i);
                 doc_obj['DOCUMENT'][i]['DOCUMENTID'] = Number(i);
+                updates['ORGRES'][Number(i)] = {
+                    Q1: [0, 0, 0, 0, 0],
+                    Q2: [0, 0, 0, 0, 0],
+                    Q3: [0, 0, 0, 0, 0],
+                    Q4: [0, 0, 0, 0, 0],
+                    Q5: [0, 0, 0, 0, 0]
+                }
             }
             doc_obj['DOCUMENT'][i]['COPYID'] = Number(i);
         }
@@ -107,11 +114,14 @@ function retrieve_adm(updates){
                 database.ref('REFERENCE_KEYS').once('value').then( refkeys => {
                     let reference_keys = refkeys.val() || {};
                     Generate_Reference_Keys(adm_obj, updates, reference_keys);
+                    if(sheet.data.length > 0)
                     convertADMdata(updates,adm_obj);
 
-                    updates[sheet_config.csoadm+'_LENGTH'] = adm_obj['DOCUMENT_LENGTH'];
+                    updates[sheet_config.csoadm+'_LENGTH'] = adm_obj['DOCUMENT_LENGTH'] || 0;
                     
                     console.log(updates);
+                    
+                    // if(sheet.data.length > 0)
                     // database.ref().update(updates);
                 });
             }
@@ -125,6 +135,7 @@ export function initial_pull(){
     // Its amazing how we would have to make everything below here repeat every minute after the final promise
 
     let updates = {}
+    updates['ORGRES'] = {};
     // FIRST: GET LENGTH OF CSO APS ALREADY IN THE DB
     database.ref(sheet_config.csoaps+'_LENGTH').once('value').then( snapshot => {
         const length = snapshot.val() || 0;
@@ -139,11 +150,12 @@ export function initial_pull(){
                 database.ref('REFERENCE_KEYS').once('value').then( refkeys => {
                     let reference_keys = refkeys.val() || {};
                     Generate_Reference_Keys(cso_obj, updates, reference_keys);
+                    if(sheet.data.length > 0)
                     convertCSOdata(updates,cso_obj);
-
+                    
                     // FINALLY: SET UPDATES TO BE SENT TO FIREBASE TO OBJECTS
                     // updates[sheet_config.csoaps] = cso_obj['DOCUMENT'];
-                    updates[sheet_config.csoaps+'_LENGTH'] = cso_obj['DOCUMENT_LENGTH'];
+                    updates[sheet_config.csoaps+'_LENGTH'] = cso_obj['DOCUMENT_LENGTH'] || 0;
                     retrieve_adm(updates);
                     console.log(updates);
                     // database.ref().update(updates);

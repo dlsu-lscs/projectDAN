@@ -1,8 +1,28 @@
 import React from 'react';
+import SideDrawerComponent from '../../components/SideDrawerComponent/SideDrawerComponent';
+import OrgresContainer from '../../smart-components/orgres-container/orgres-container';
 export const template = (component) => {
-    let { general , aps, details } = component.state;
+    let { general , aps, details, radarIcon, drawerOn } = component.state;
     return (
         <section className = "document-container">
+            <SideDrawerComponent 
+                active = {drawerOn}
+                untoggle = {component.unSetDrawer}>
+                <OrgresContainer id = { 1 }></OrgresContainer>
+                <div style = {{"padding-left": "10px","padding-right": "10px"}}>
+                    <div className = "section-card" style = {{"margin-top": "10px","padding-left": "10px","padding-right": "10px"}}>
+                        <div className = "content-title"><span>ANP</span> <span>ANMP</span></div>
+                        <div>Number of Participants</div>
+                        <div className = "BarGraph" style = {{width: "100%", height: "100px", position: "relative"}}>
+                            <div className = "HiddenBar" style = {{"background-color": "grey", width: "100%", height: "50px", position: "absolute"}}>
+                            </div>
+                            <div className = "ActiveBar" style = {{"background-color": "#1475c1ff", width: "70%", height: "50px", position: "absolute"}}>
+                                70%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SideDrawerComponent>
             <div className = "header-section section-card">
                 <div className = "header-wrapper">
                     {general?
@@ -16,7 +36,7 @@ export const template = (component) => {
 
                     <div className = "header-options">
                         <div className = "filter-toggle-container">
-                            <div className = "filter-toggle"></div>
+                            <div className = "filter-toggle" onClick = {component.setDrawer}><img src = {radarIcon} style = {{height: "35px", width: "35px", "margin-left": "22.5%", "margin-top": "5%"}} alt = "gaphs"></img></div>
                         </div>
                     </div>
                     </div>:
@@ -95,6 +115,45 @@ export const template = (component) => {
                                 }
                         </div>
                     </div>
+                </div>
+
+                <div className = "section-card content-section">
+                <div className = "content-title"><span className = "content-title-span">Officer Information</span></div>
+                    <div className = "gen-info-section">
+                        <div className = "gen-info-block">
+                                <div className = "gen-info-title t1">Submitted By</div>
+                                {details?
+                                <div className = "gen-info-content t2">{details['Submitted by']+"("+details['Email address']+")"}</div>
+                                :<div></div>}
+                        </div>
+                        <div className = "gen-info-block">
+                                <div className = "gen-info-title t1">Filed By</div>
+                                {details?
+                                <div className = "gen-info-content t2">
+                                    <div>{details['Filed By']}</div>
+                                    {/* <div>October 6, 2018 </div> */}
+                                </div>
+                                :<div></div>}
+                        </div>
+                        <div className = "gen-info-block">
+                                <div className = "gen-info-title t1">Second Checked By</div>
+                                <div className = "gen-info-content t2">
+                                    {details?
+                                    <div>{details['Second Checked By']} </div>:
+                                    <div></div>
+                                    }
+                                    {/* <div>15:00 - 21:00 </div> */}
+                                </div>
+                        </div>
+                        <div className = "gen-info-block">
+                                <div className = "gen-info-title t1">Filed Date</div>
+                                {details?
+                                <div className = "gen-info-content t2">{details['Filed Date']}</div>:
+                                <div className = "gen-info-content t2"></div>
+                                }
+                        </div>
+                    </div>
+               
                 </div>
             </div>
         </section>

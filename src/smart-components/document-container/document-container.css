@@ -34,6 +34,7 @@
 .title-section{
     height: 100%;
     line-height: 115px;
+    font-family: sans-serif;
     text-align: right;
     max-width: 600px;
     font-size: 1.4vw;
@@ -62,6 +63,7 @@
     width: 70px;
     display: flex;
     align-items: center;
+    margin-top: 50%;
     
 
 }
@@ -72,6 +74,7 @@
     border-style: solid;
     border-color: #808080;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .page-wrapper{
@@ -191,6 +194,12 @@
 
 .gen-info-title {
 
+}
+.ActiveBar{
+    color: #FFF;
+    line-height: 50px;
+    text-align: right;
+    
 }
 .placeholder {
     height: 10px;
