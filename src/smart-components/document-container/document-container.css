@@ -12,6 +12,10 @@
 .document-container{
     margin:auto;
 }
+.document-container *{
+
+    box-sizing: initial;
+}
 .section-card{
     border-width: 1px;
     border-style: solid;
