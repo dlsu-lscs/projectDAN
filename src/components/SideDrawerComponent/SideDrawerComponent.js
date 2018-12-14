@@ -22,7 +22,8 @@ class SideDrawerComponent extends Component {
       this.setState
     }
     return (
-      <div className = {"DrawerHidden "+ (this.props.active? "DrawerWrapper": "")} onClick = {this.untoggle}>
+      <div className = {"DrawerHidden "+ (this.props.active? "DrawerWrapper": "")}>
+        <div className = {"ShadowDrawerHidden "+ (this.props.active? "ShadowDrawer": "")} onClick = {this.untoggle}></div>
         <div className = {"SideDrawerHidden "+(this.props.active? "SideDrawer": "")} style = {{width: this.state.width}}>
             {this.props.children}
         </div>

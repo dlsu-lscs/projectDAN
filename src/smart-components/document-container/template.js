@@ -9,6 +9,12 @@ export const template = (component) => {
                 active = {drawerOn}
                 untoggle = {component.unSetDrawer}>
                 <OrgresContainer id = { 1 }></OrgresContainer>
+
+                <div className = "section-card content-section">
+                    <div className = "content-title">ANP</div>
+                    <div>Number of Participants</div>
+                    <div></div>
+                </div>
             </SideDrawerComponent>
             <div className = "header-section section-card">
                 <div className = "header-wrapper">
