@@ -122,7 +122,7 @@ function retrieve_adm(updates){
                     console.log(updates);
                     
                     // if(sheet.data.length > 0)
-                    // database.ref().update(updates);
+                    database.ref().update(updates);
                 });
             }
         });
@@ -139,7 +139,6 @@ export function initial_pull(){
     // FIRST: GET LENGTH OF CSO APS ALREADY IN THE DB
     database.ref(sheet_config.csoaps+'_LENGTH').once('value').then( snapshot => {
         const length = snapshot.val() || 0;
-        console.log("TANGINAA LENGTHHH MOOO BOBOOOO:::::", length);
         const begin = 2+snapshot.val();
         const ranges = ["!1:1", "!"+begin+":200000"]; // GET FIRST COLUMN AND SUCCEEDING COLUMNS
         // SECOND: TRANSFORM SHEET DATA TO OBJECTS

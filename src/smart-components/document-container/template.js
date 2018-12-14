@@ -13,7 +13,12 @@ export const template = (component) => {
                 <div className = "section-card content-section">
                     <div className = "content-title">ANP</div>
                     <div>Number of Participants</div>
-                    <div></div>
+                    <div className = "BarGraph" style = {{width: "100%", height: "100px"}}>
+                        <div className = "HiddenBar" style = {{"background-color": "grey", width: "100%", height: "100px", position: "absolute"}}>
+                        </div>
+                        <div className = "ActiveBar" style = {{"background-color": "red", width: "70%", height: "100px", position: "absolute"}}>
+                        </div>
+                    </div>
                 </div>
             </SideDrawerComponent>
             <div className = "header-section section-card">
