@@ -6,7 +6,7 @@ class PageLoading extends Component {
     return (
       <div className="page-loading">
 
-        <div className = "loading">The page is loading XD</div>
+        <div className = "loading">The page is loading</div>
         <div className = "XD"></div>
       </div>
     );

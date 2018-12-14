@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './page-list-adm.css';
+import './page-list-aps.css';
 
 import NavigationComponent from '../../components/navigation-component/navigation-component';
 import OverviewComponent from '../../components/OverviewComponent/OverviewComponent';
@@ -7,7 +7,7 @@ import TableComponent from '../../smart-components/table-component/table-compone
 
 import { get_general_data } from '../../apis/pull_general_data';
 
-class PageListADM extends Component {
+class PageListAPS extends Component {
     constructor({ match }) {
         super();
         this.state={
@@ -32,7 +32,7 @@ class PageListADM extends Component {
                     position: 'left',
                 }
             }, 
-            tableHeaders: [ '', 'Last Updated', 'Name', 'Status', 'Remarks'],
+            tableHeaders: [ '', 'Last Updated', 'Title', 'Status', 'Remarks'],
             generalData: [],
         }
         this.generalDataToState = this.generalDataToState.bind(this);
@@ -96,4 +96,4 @@ class PageListADM extends Component {
     }
 }
 
-export default PageListADM;
+export default PageListAPS;

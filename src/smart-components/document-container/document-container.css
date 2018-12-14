@@ -195,6 +195,12 @@
 .gen-info-title {
 
 }
+.ActiveBar{
+    color: #FFF;
+    line-height: 50px;
+    text-align: right;
+    
+}
 .placeholder {
     height: 10px;
     margin: 10px;

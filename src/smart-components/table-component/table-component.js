@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './table-component.css';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faCalendarAlt, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 
 export default class TableComponent extends Component {
@@ -16,6 +17,8 @@ export default class TableComponent extends Component {
         super();
         this.state={
             searchString: '',
+            sortBy: 'Last Updated',
+            sortAsc: false,
             showDateFilter: false,
             dateFilter: {
                 startDate: new Date(2018,1,1,0,0,0),
@@ -25,16 +28,25 @@ export default class TableComponent extends Component {
             filters: [],
         }
 
+        this.handleSortChange = this.handleSortChange.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
 
+    handleSortChange = (param) => {
+        if(param == this.state.sortBy) {
+            this.setState({ sortAsc: !this.state.sortAsc})
+        } else {
+            this.setState({ sortBy: param, sortAsc: true });
+        }
+    }
+
+    // called after search
     handleSearchChange = (e) => {
         this.setState({ searchString:e.target.value });
     }
 
+    // called when datepicker values are changed    
     handleSelect(range){
-        console.log(range);
-        console.log(range.selection.startDate);
         this.setState({
             dateFilter: {
                 startDate: range.selection.startDate,
@@ -43,40 +55,72 @@ export default class TableComponent extends Component {
             }
         });
     }
-    
-    predicateBy(prop){
-        if(prop == 'lastUpdated') {
-            return function(a, b) {
-                var dA = new Date(a[prop]);
-                var dB = new Date(b[prop]);
 
-                if( dA > dB){
-                    return 1;
-                }else if( dA < dB ){
-                    return -1;
+    predicateBy(prop){
+        if(this.state.sortAsc) { // sort ascending
+            if(prop == 'Last Updated') {
+                return function(a, b) {
+                    var dA = Moment(a[prop], 'DD/MM/YYYY HH:mm:ss');
+                    var dB = Moment(b[prop], 'DD/MM/YYYY HH:mm:ss');
+    
+                    if( dA > dB){
+                        return 1;
+                    }else if( dA < dB ){
+                        return -1;
+                    }
+                    return 0;
                 }
-                return 0;
-            }
-        } else 
-            return function(a,b){
-                if( a[prop] > b[prop]){
-                    return 1;
-                }else if( a[prop] < b[prop] ){
-                    return -1;
+            } else {
+                return function(a,b){
+                    if( a[prop] > b[prop]){
+                        return 1;
+                    }else if( a[prop] < b[prop] ){
+                        return -1;
+                    }
+                    return 0;
                 }
-                return 0;
-            }
+            } 
+        } else { // descending
+            if(prop == 'Last Updated') {
+                return function(a, b) {
+                    var dA = Moment(a[prop], 'DD/MM/YYYY HH:mm:ss');
+                    var dB = Moment(b[prop], 'DD/MM/YYYY HH:mm:ss');
+    
+                    if( dA > dB){
+                        return -1;
+                    }else if( dA < dB ){
+                        return 1;
+                    }
+                    return 0;
+                }
+            } else {
+                return function(a,b){
+                    if( a[prop] > b[prop]){
+                        return -1;
+                    }else if( a[prop] < b[prop] ){
+                        return 1;
+                    }
+                    return 0;
+                }
+            } 
+        }
+        
+            
     }
 
     loadData(headers, data, sort, generalData) {
+        // create JSX for table headers
         var tableHeaders = (<tr>
-            { headers.map(function(colName) {
-                return <th className="label">{colName}</th>; })}
+            { headers.map((colName) => {
+                return <th className="label" 
+                            onClick={() => { this.handleSortChange( colName ) } }>{colName}
+                            {colName == this.state.sortBy && this.state.sortAsc ? <span className="th-sort"><FontAwesomeIcon icon={faCaretUp} /></span> : <span className="th-sort"></span> }
+                            {colName == this.state.sortBy && !this.state.sortAsc ? <span className="th-sort"><FontAwesomeIcon icon={faCaretDown} /></span> : <span className="th-sort"></span> }
+                    </th>; })}
         </tr>);
 
-        
+        // format table data
         var formattedData = [];
-        console.log("data count ", data.length);
         data.forEach((item, i) => {
             var remarksCombined = '';
             if(item['Remarks'] != null) {
@@ -87,20 +131,31 @@ export default class TableComponent extends Component {
                     remarksCombined = remarksCombined.concat(item['Remarks'][key])
                 });
             }
-            formattedData.push( {
-                lastUpdated: item['Last Updated'],
-                title: item['Title'],
-                status: item['Status'],
-                remarks: remarksCombined,
-            });
+
+            var obj = {};
+            obj[headers[1]] = item[headers[1]];
+            obj[headers[2]] = item[headers[2]];
+            obj[headers[3]] = item[headers[3]];
+            obj[headers[4]] = remarksCombined;
+
+            formattedData.push(obj);
         });
 
-        if(sort !== null) {
-            formattedData.sort( this.predicateBy(sort) );
-        }
+        // filter data
+        formattedData = formattedData.filter((entry) => {
+            console.log("filtering");
+            var start = Moment(this.state.dateFilter.startDate);
+            var end = Moment(this.state.dateFilter.endDate);
+            var current = Moment(entry['Last Updated'], 'DD/MM/YYYY HH:mm:ss');
 
+            return current >= start && current <= end;
+        })
+
+        // sort data
+        formattedData.sort( this.predicateBy(this.state.sortBy) );
+
+        // create JSX for table body 
         var tableBody = formattedData.map(function(row, i) {
-            // var trId = row['id'];
             var trId = i;
             return (
             <tr className="row-data" >
@@ -108,11 +163,12 @@ export default class TableComponent extends Component {
                     <Link className="link" to={ 'document/' + trId }>{ i + 1 }</Link>                
                 </td>
                 {Object.keys(row).map(function(key, index){
-                    if(row[key] == "remarks") {
+                    // TODO: Generalize to make it work for ADM
+                    if(row[key] == "Remarks") {
                         return <td className="bold"> 
                             <Link className="link" to={ 'document/' + trId }>{ row[key]}</Link>
                         </td>;
-                    } else if(key=="status") {
+                    } else if(key=="Status") {
                         if(row[key] == "Early Approved") {
                             return <td>
                                 <Link className="link" to={ 'document/' + trId }>
@@ -143,10 +199,6 @@ export default class TableComponent extends Component {
         return { tableHeaders, tableBody };
     }
 
-    filterDate() {
-
-    }
-
     render() {
 
         let { tableName, tableHeads, tableData, generalData } = this.props;
@@ -159,7 +211,7 @@ export default class TableComponent extends Component {
             })
         }
 
-        let { tableHeaders, tableBody } = this.loadData(tableHeads, tableData, 'status', generalData);
+        let { tableHeaders, tableBody } = this.loadData(tableHeads, tableData, 'Last Updated', generalData);
 
         return (
             <section id="table-content">

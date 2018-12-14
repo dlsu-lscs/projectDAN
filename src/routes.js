@@ -8,6 +8,10 @@ import NavBarContainer from './smart-components/nav-bar-container/nav-bar-contai
 import PageLogin from './pages/page-login/page-login'; //replace this?
 import PageViewSpecificDocument from './pages/page-view-specific-document/page-view-specific-document'
 import PageSignup from './pages/page-signup/page-signup';
+<<<<<<< HEAD
+=======
+import PageListAPS from './pages/page-list-aps/page-list-aps';
+>>>>>>> dcd0fc916786876a6146d0f7c9f24e3a50e3286d
 import PageNotfound from './pages/page-notfound/page-notfound';
 import { GetKeys } from './actions/authentication';
 
@@ -62,11 +66,17 @@ class Routes extends Component {
                     <Switch>
                         <Route path = "/" component = {PageLogin} exact></Route>
                         <Route path = "/signup" component = {PageSignup} exact></Route>
+<<<<<<< HEAD
                         <Route path = "/signup" component = {PageSignup} exact></Route>
                         <Route path = "/test-adm" component = {PageListADM} exact></Route>
                         <Route path = "/document/:id" component = {PageViewSpecificDocument} exact></Route>
 
                         <Route path = "/document/:id/orgres" component = {PageActivityOrgres}></Route> 
+=======
+                        <Route path = "/document/:id" component = {PageViewSpecificDocument}></Route>
+                        <Route path = "/home" component = {PageListAPS} exact></Route>
+                        <Route path = "/document/:id/orgres" component = {PageActivityOrgres} exact></Route> 
+>>>>>>> dcd0fc916786876a6146d0f7c9f24e3a50e3286d
                         <Route component = {PageNotfound}></Route>
                     </Switch>
                 </div>
