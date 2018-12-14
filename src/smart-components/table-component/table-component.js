@@ -33,7 +33,6 @@ export default class TableComponent extends Component {
     }
 
     handleSortChange = (param) => {
-        // TODO: un-brute force
         if(param == this.state.sortBy) {
             this.setState({ sortAsc: !this.state.sortAsc})
         } else {
@@ -41,13 +40,13 @@ export default class TableComponent extends Component {
         }
     }
 
+    // called after search
     handleSearchChange = (e) => {
         this.setState({ searchString:e.target.value });
     }
 
+    // called when datepicker values are changed    
     handleSelect(range){
-        console.log(range);
-        console.log(range.selection.startDate);
         this.setState({
             dateFilter: {
                 startDate: range.selection.startDate,
@@ -58,7 +57,7 @@ export default class TableComponent extends Component {
     }
 
     predicateBy(prop){
-        if(this.state.sortAsc) {
+        if(this.state.sortAsc) { // sort ascending
             if(prop == 'Last Updated') {
                 return function(a, b) {
                     var dA = Moment(a[prop], 'DD/MM/YYYY HH:mm:ss');
@@ -81,7 +80,7 @@ export default class TableComponent extends Component {
                     return 0;
                 }
             } 
-        } else {
+        } else { // descending
             if(prop == 'Last Updated') {
                 return function(a, b) {
                     var dA = Moment(a[prop], 'DD/MM/YYYY HH:mm:ss');
@@ -142,6 +141,16 @@ export default class TableComponent extends Component {
             formattedData.push(obj);
         });
 
+        // filter data
+        formattedData = formattedData.filter((entry) => {
+            console.log("filtering");
+            var start = Moment(this.state.dateFilter.startDate);
+            var end = Moment(this.state.dateFilter.endDate);
+            var current = Moment(entry['Last Updated'], 'DD/MM/YYYY HH:mm:ss');
+
+            return current >= start && current <= end;
+        })
+
         // sort data
         formattedData.sort( this.predicateBy(this.state.sortBy) );
 
@@ -188,10 +197,6 @@ export default class TableComponent extends Component {
         });
 
         return { tableHeaders, tableBody };
-    }
-
-    filterDate() {
-
     }
 
     render() {
