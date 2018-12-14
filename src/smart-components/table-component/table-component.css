@@ -148,3 +148,12 @@ td {
     position: relative;
     cursor: pointer;
 }
+
+th {
+    cursor: pointer;
+}
+
+.th-sort {
+    margin-left: 4px;
+    font-size: 14px;
+}
