@@ -122,7 +122,7 @@ function retrieve_adm(updates){
                     console.log(updates);
                     
                     // if(sheet.data.length > 0)
-                    database.ref().update(updates);
+                    // database.ref().update(updates);
                 });
             }
         });
